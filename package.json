@@ -1,0 +1,10 @@
+{
+    "name": "AlwaysTooLate.Core", 
+    "unity": "2018.3", 
+    "version": "1.0.0-preview", 
+    "dependencies": { }, 
+    "keywords": [
+        "AlwaysTooLate"
+    ], 
+    "description": "AlwaysTooLate Core module"
+}
