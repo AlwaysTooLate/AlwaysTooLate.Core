@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace AlwaysTooLate.Core
 {
@@ -28,6 +29,8 @@ namespace AlwaysTooLate.Core
             _root.position = Vector3.zero;
             _root.rotation = Quaternion.identity;
 
+            Object.DontDestroyOnLoad(_root);
+            
             _freeGameObjects = new Stack<GameObject>();
             _gameObjects = new List<GameObject>();
 
@@ -55,6 +58,7 @@ namespace AlwaysTooLate.Core
             {
                 Object.Destroy(gameObject);
             }
+            Object.Destroy(_root);
             _gameObjects.Clear();
         }
 
