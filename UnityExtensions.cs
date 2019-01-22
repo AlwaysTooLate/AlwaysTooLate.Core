@@ -71,6 +71,31 @@ namespace AlwaysTooLate.Core
             return v;
         }
 
+        /// <summary>
+        /// Squared distance between two vectors.
+        /// </summary>
+        /// <returns>The constructed Vector2.</returns>
+        public static float DistanceSqr(this Vector2 left, Vector2 right)
+        {
+            var x = left.x - right.x;
+            var y = left.y - right.y;
+
+            return (x * x) + (y * y);
+        }
+
+        /// <summary>
+        /// Squared distance between two vectors.
+        /// </summary>
+        /// <returns>The constructed Vector2.</returns>
+        public static float DistanceSqr(this Vector3 left, Vector3 right)
+        {
+            var x = left.x - right.x;
+            var y = left.y - right.y;
+            var z = left.z - right.z;
+
+            return (x * x) + (y * y) + (z * z);
+        }
+
         public static Guid ReadGUID(this BinaryReader reader)
         {
             return new Guid(reader.ReadString());
