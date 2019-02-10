@@ -4,6 +4,11 @@ using System;
 using System.IO;
 using UnityEngine;
 using UnityEngine.Events;
+using Matrix4x4 = UnityEngine.Matrix4x4;
+using Quaternion = UnityEngine.Quaternion;
+using Vector2 = UnityEngine.Vector2;
+using Vector3 = UnityEngine.Vector3;
+using Vector4 = UnityEngine.Vector4;
 
 namespace AlwaysTooLate.Core
 {
@@ -116,6 +121,11 @@ namespace AlwaysTooLate.Core
             return new Vector4(reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle());
         }
 
+        public static Matrix4x4 ReadMatrix4x4(this BinaryReader reader)
+        {
+            return new Matrix4x4(reader.ReadVector4(), reader.ReadVector4(), reader.ReadVector4(), reader.ReadVector4());
+        }
+
         public static void Write(this BinaryWriter writer, Guid guid)
         {
             writer.Write(guid.ToString("N"));
@@ -140,6 +150,38 @@ namespace AlwaysTooLate.Core
             writer.Write(v.y);
             writer.Write(v.z);
             writer.Write(v.w);
+        }
+
+        public static void Write(this BinaryWriter writer, Matrix4x4 v)
+        {
+            writer.Write(v.GetColumn(0));
+            writer.Write(v.GetColumn(1));
+            writer.Write(v.GetColumn(2));
+            writer.Write(v.GetColumn(3));
+        }
+
+        public static Matrix4x4 Lerp(this Matrix4x4 from, Matrix4x4 to, float t)
+        {
+            return new Matrix4x4
+            {
+                m00 = Mathf.Lerp(from.m00, to.m00, t),
+                m01 = Mathf.Lerp(from.m01, to.m01, t),
+                m02 = Mathf.Lerp(from.m02, to.m02, t),
+                m03 = Mathf.Lerp(from.m03, to.m03, t),
+                m10 = Mathf.Lerp(from.m10, to.m10, t),
+                m11 = Mathf.Lerp(from.m11, to.m11, t),
+                m12 = Mathf.Lerp(from.m12, to.m12, t),
+                m13 = Mathf.Lerp(from.m13, to.m13, t),
+                m20 = Mathf.Lerp(from.m20, to.m20, t),
+                m21 = Mathf.Lerp(from.m21, to.m21, t),
+                m22 = Mathf.Lerp(from.m22, to.m22, t),
+                m23 = Mathf.Lerp(from.m23, to.m23, t),
+                m30 = Mathf.Lerp(from.m30, to.m30, t),
+                m31 = Mathf.Lerp(from.m31, to.m31, t),
+                m32 = Mathf.Lerp(from.m32, to.m32, t),
+                m33 = Mathf.Lerp(from.m33, to.m33, t)
+            };
+
         }
     }
 
