@@ -184,16 +184,4 @@ namespace AlwaysTooLate.Core
 
         }
     }
-
-    [Serializable]
-    public class UnityEventTransform : UnityEvent<Transform> { }
-    
-    [Serializable]
-    public class UnityEventInt : UnityEvent<int> { }
-
-    [Serializable]
-    public class UnityEventFloat : UnityEvent<float> { }
-
-    [Serializable]
-    public class UnityEventString : UnityEvent<string> { }
 }
