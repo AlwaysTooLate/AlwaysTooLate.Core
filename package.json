@@ -1,10 +1,7 @@
 {
-    "name": "AlwaysTooLate.Core", 
+    "name": "com.alwaystoolate.core", 
+    "description": "Always Too Late's Core module",
     "unity": "2018.3", 
-    "version": "1.0.0-preview", 
-    "dependencies": { }, 
-    "keywords": [
-        "AlwaysTooLate"
-    ], 
-    "description": "AlwaysTooLate Core module"
+    "version": "1.0.0", 
+    "dependencies": { }
 }

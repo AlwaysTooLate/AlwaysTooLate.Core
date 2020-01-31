@@ -26,19 +26,38 @@ namespace AlwaysTooLate.Core
             transform.rotation = Quaternion.Slerp(transform.rotation, rotation, t);
         }
 
-        // source: https://forum.unity.com/threads/change-gameobject-layer-at-run-time-wont-apply-to-child.10091/
         /// <summary>
         /// Sets layer recursively.
         /// </summary>
         /// <param name="obj"></param>
         /// <param name="layer">The layer to apply.</param>
+        [Obsolete("Please use SetLayers(int) instead.")]
         public static void SetLayerRecursively(this GameObject obj, int layer)
         {
+            // source: https://forum.unity.com/threads/change-gameobject-layer-at-run-time-wont-apply-to-child.10091/
             obj.layer = layer;
 
             foreach (Transform child in obj.transform)
             {
                 child.gameObject.SetLayerRecursively(layer);
+            }
+        }
+
+        /// <summary>
+        /// Sets layer on this game object and all of it's children.
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="layer">The layer to apply.</param>
+        public static void SetLayers(this GameObject obj, int layer)
+        {
+            // source: https://forum.unity.com/threads/change-gameobject-layer-at-run-time-wont-apply-to-child.10091/
+            if (obj == null)
+                return;
+
+            obj.layer = layer;
+            foreach (var trans in obj.GetComponentsInChildren<Transform>(true))
+            {
+                trans.gameObject.layer = layer;
             }
         }
 
