@@ -49,7 +49,7 @@ namespace AlwaysTooLate.Core
         public void Dispose()
         {
             foreach (var gameObject in _gameObjects) Object.Destroy(gameObject);
-            Object.Destroy(_root);
+            Object.Destroy(_root.gameObject);
             _gameObjects.Clear();
         }
 

@@ -3,19 +3,13 @@
 using System;
 using System.IO;
 using UnityEngine;
-using UnityEngine.Events;
-using Matrix4x4 = UnityEngine.Matrix4x4;
-using Quaternion = UnityEngine.Quaternion;
-using Vector2 = UnityEngine.Vector2;
-using Vector3 = UnityEngine.Vector3;
-using Vector4 = UnityEngine.Vector4;
 
 namespace AlwaysTooLate.Core
 {
     public static class UnityExtensions
     {
         /// <summary>
-        /// Smooth LookAt extension function.
+        ///     Smooth LookAt extension function.
         /// </summary>
         /// <param name="transform"></param>
         /// <param name="target">The target look at point.</param>
@@ -27,7 +21,7 @@ namespace AlwaysTooLate.Core
         }
 
         /// <summary>
-        /// Sets layer recursively.
+        ///     Sets layer recursively.
         /// </summary>
         /// <param name="obj"></param>
         /// <param name="layer">The layer to apply.</param>
@@ -37,14 +31,11 @@ namespace AlwaysTooLate.Core
             // source: https://forum.unity.com/threads/change-gameobject-layer-at-run-time-wont-apply-to-child.10091/
             obj.layer = layer;
 
-            foreach (Transform child in obj.transform)
-            {
-                child.gameObject.SetLayerRecursively(layer);
-            }
+            foreach (Transform child in obj.transform) child.gameObject.SetLayerRecursively(layer);
         }
 
         /// <summary>
-        /// Sets layer on this game object and all of it's children.
+        ///     Sets layer on this game object and all of it's children.
         /// </summary>
         /// <param name="obj"></param>
         /// <param name="layer">The layer to apply.</param>
@@ -55,14 +46,11 @@ namespace AlwaysTooLate.Core
                 return;
 
             obj.layer = layer;
-            foreach (var trans in obj.GetComponentsInChildren<Transform>(true))
-            {
-                trans.gameObject.layer = layer;
-            }
+            foreach (var trans in obj.GetComponentsInChildren<Transform>(true)) trans.gameObject.layer = layer;
         }
 
         /// <summary>
-        /// Snaps this vector by given value.
+        ///     Snaps this vector by given value.
         /// </summary>
         public static Vector2 Snap(this Vector2 v, float value)
         {
@@ -70,7 +58,7 @@ namespace AlwaysTooLate.Core
         }
 
         /// <summary>
-        /// Snaps this vector by given value.
+        ///     Snaps this vector by given value.
         /// </summary>
         public static Vector3 Snap(this Vector3 v, float value)
         {
@@ -78,7 +66,7 @@ namespace AlwaysTooLate.Core
         }
 
         /// <summary>
-        /// Converts Vector3 into Vector2.
+        ///     Converts Vector3 into Vector2.
         /// </summary>
         /// <returns>The constructed Vector2.</returns>
         public static Vector2 ToVector2(this Vector3 v)
@@ -87,7 +75,7 @@ namespace AlwaysTooLate.Core
         }
 
         /// <summary>
-        /// Converts Vector4 into Vector3.
+        ///     Converts Vector4 into Vector3.
         /// </summary>
         /// <returns>The constructed Vector3.</returns>
         public static Vector3 ToVector3(this Vector4 v)
@@ -96,7 +84,7 @@ namespace AlwaysTooLate.Core
         }
 
         /// <summary>
-        /// Squared distance between two vectors.
+        ///     Squared distance between two vectors.
         /// </summary>
         /// <returns>The constructed Vector2.</returns>
         public static float DistanceSqr(this Vector2 left, Vector2 right)
@@ -104,11 +92,11 @@ namespace AlwaysTooLate.Core
             var x = left.x - right.x;
             var y = left.y - right.y;
 
-            return (x * x) + (y * y);
+            return x * x + y * y;
         }
 
         /// <summary>
-        /// Squared distance between two vectors.
+        ///     Squared distance between two vectors.
         /// </summary>
         /// <returns>The constructed Vector2.</returns>
         public static float DistanceSqr(this Vector3 left, Vector3 right)
@@ -117,7 +105,7 @@ namespace AlwaysTooLate.Core
             var y = left.y - right.y;
             var z = left.z - right.z;
 
-            return (x * x) + (y * y) + (z * z);
+            return x * x + y * y + z * z;
         }
 
         public static Guid ReadGUID(this BinaryReader reader)
@@ -142,7 +130,8 @@ namespace AlwaysTooLate.Core
 
         public static Matrix4x4 ReadMatrix4x4(this BinaryReader reader)
         {
-            return new Matrix4x4(reader.ReadVector4(), reader.ReadVector4(), reader.ReadVector4(), reader.ReadVector4());
+            return new Matrix4x4(reader.ReadVector4(), reader.ReadVector4(), reader.ReadVector4(),
+                reader.ReadVector4());
         }
 
         public static void Write(this BinaryWriter writer, Guid guid)
@@ -200,7 +189,6 @@ namespace AlwaysTooLate.Core
                 m32 = Mathf.Lerp(from.m32, to.m32, t),
                 m33 = Mathf.Lerp(from.m33, to.m33, t)
             };
-
         }
     }
 }
