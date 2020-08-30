@@ -23,16 +23,16 @@ namespace AlwaysTooLate.Core
 
         protected void Awake()
         {
-            Debug.Assert(!Instance,
-                $"Found another singleton instance! This is not expected. Type name '{nameof(TSingleton)}'");
-            DontDestroyOnLoad(gameObject);
-            Instance = (TSingleton) this;
+            if (!Instance)
+            {
+                Debug.LogError($"Found another singleton instance! This is not expected. Type name '{typeof(TSingleton).Name}'");
+                DontDestroyOnLoad(gameObject);
+            }
 
+            Instance = (TSingleton) this;
             OnAwake();
         }
 
-        protected virtual void OnAwake()
-        {
-        }
+        protected virtual void OnAwake() { }
     }
 }
