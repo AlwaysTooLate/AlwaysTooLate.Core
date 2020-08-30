@@ -23,7 +23,7 @@ namespace AlwaysTooLate.Core
 
         protected void Awake()
         {
-            if (!Instance)
+            if (Instance)
             {
                 Debug.LogError($"Found another singleton instance! This is not expected. Type name '{typeof(TSingleton).Name}'");
                 DontDestroyOnLoad(gameObject);
