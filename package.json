@@ -3,6 +3,6 @@
   "displayName": "AlwaysTooLate Core",
   "description": "AlwaysTooLate's Core module",
   "unity": "2018.3",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "type": "library"
 }
