@@ -14,6 +14,9 @@ namespace AlwaysTooLate.Core
     ///     so it can be used in a special cases.
     ///     Mainly built to be used with Console, as it needs a lot of GameObjects being used as Text lines.
     /// </summary>
+    [Obsolete("GameObjectPool is no longer supported. " +
+              "Please use new 'AlwaysTooLate.Core.Pooling.GameObjectPool<Transform> or GameObjectPool2'. " +
+              "This class will be replaced in the future.")]
     public class GameObjectPool : IDisposable
     {
         private const string GameObjectName = "Pooled GameObject";
@@ -49,7 +52,10 @@ namespace AlwaysTooLate.Core
         public void Dispose()
         {
             foreach (var gameObject in _gameObjects) Object.Destroy(gameObject);
-            Object.Destroy(_root.gameObject);
+
+            if (_root.gameObject)
+                Object.Destroy(_root.gameObject);
+
             _gameObjects.Clear();
         }
 
