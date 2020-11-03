@@ -27,6 +27,12 @@ namespace AlwaysTooLate.Core.Pooling
         private bool _disposed = false;
 
         /// <summary>
+        ///     Unsafe access to the internal game object handles list.
+        ///     Use with caution, this is not thread safe.
+        /// </summary>
+        public IReadOnlyList<THandleComponent> UnsafeObjectHandles => _gameObjectHandles;
+
+        /// <summary>
         ///     Default constructor.
         /// </summary>
         /// <param name="prefab">
