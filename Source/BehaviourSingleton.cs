@@ -26,9 +26,13 @@ namespace AlwaysTooLate.Core
             if (Instance)
             {
                 Debug.LogError($"Found another singleton instance! This is not expected. Type name '{typeof(TSingleton).Name}'");
-                DontDestroyOnLoad(gameObject);
             }
 
+            if (Application.isPlaying)
+            {
+                DontDestroyOnLoad(transform.root.gameObject);
+            }
+            
             Instance = (TSingleton) this;
             OnAwake();
         }
